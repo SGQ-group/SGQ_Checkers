@@ -1,5 +1,3 @@
-
-
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -9,5 +7,4 @@ public class Main {
         // Выполнить в EDT
         SwingUtilities.invokeLater(game);
     }
-
 }
