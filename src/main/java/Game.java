@@ -100,7 +100,8 @@ public class Game implements Runnable, MouseListener {
             if (x >= 254.0 && x <= 353.0) System.out.println("2 kletka 2 r");
             if (x >= 452.0 && x <= 551.0) {
                 ((Drawing) panel).getCheckers_b().get(0).getPosition_b().get(0).setPositionX(400);
-                ((Drawing) panel).paintComponent(panel.getGraphics());
+                ((Drawing) panel).setGraf(false);
+                ((Drawing) panel).print(panel.getGraphics());
             }
             if (x >= 650.0 && x <= 749.0) System.out.println("4 kletka 2r");
         }
