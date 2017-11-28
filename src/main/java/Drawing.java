@@ -8,6 +8,7 @@ public class Drawing extends JPanel {
     private ImageIcon board;
 
     public void paintComponent(Graphics g) {
+        // Обновить шашку
         super.paintComponent(g);
         board = new ImageIcon(new Img().img1());
         board.paintIcon(this,g,2,2);
@@ -20,6 +21,14 @@ public class Drawing extends JPanel {
             checkers_r.get(i).getIcon().paintIcon(this,g,checkers_r.get(i).getPosition_r().get(i).getPositionX(),
                     checkers_r.get(i).getPosition_r().get(i).getPositionY());
         }
+    }
+
+    public ArrayList<Checker> getCheckers_b() {
+        return checkers_b;
+    }
+
+    public ArrayList<Checker> getCheckers_r() {
+        return checkers_r;
     }
 
     public void create(){

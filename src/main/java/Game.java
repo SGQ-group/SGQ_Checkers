@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Game implements Runnable, MouseListener {
-
+    private JPanel panel;
     public void run() {
         JFrame frame = new JFrame();
         frame.setTitle("Test mouse events");
@@ -12,7 +12,7 @@ public class Game implements Runnable, MouseListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        JPanel panel = new Drawing();
+        panel = new Drawing();
         panel.setPreferredSize(new Dimension(900, 900));
 
         panel.addMouseListener(this);
@@ -98,7 +98,10 @@ public class Game implements Runnable, MouseListener {
         if (x >= 60.0 && y >= 555.0 && x <= 852.0 && y <= 652.0) {
             if (x >= 56.0 && x <= 155.0) System.out.println("1 KLETKA 2 R");
             if (x >= 254.0 && x <= 353.0) System.out.println("2 kletka 2 r");
-            if (x >= 452.0 && x <= 551.0) System.out.println("3 kletka 2 r");
+            if (x >= 452.0 && x <= 551.0) {
+                ((Drawing) panel).getCheckers_b().get(0).getPosition_b().get(0).setPositionX(400);
+                ((Drawing) panel).paintComponent(panel.getGraphics());
+            }
             if (x >= 650.0 && x <= 749.0) System.out.println("4 kletka 2r");
         }
         if (x >= 60.0 && y >= 654.0 && x <= 852.0 && y <= 751.0) {
