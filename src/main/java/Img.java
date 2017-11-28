@@ -4,9 +4,7 @@ import java.io.IOException;
 
 public class Img {
 
-    public Img() {
-    }
-
+    //Метод считывания из ресурс папки t.jpg (Доска)
     public BufferedImage img1() {
         try {
             return ImageIO.read(this.getClass().getResource("t.jpg"));
@@ -15,16 +13,18 @@ public class Img {
         }
     }
 
+    //Метод считывания из ресурс папки w.png и b.png (Черная шашка и белая шашка)
     public BufferedImage img2(int a) {
+        //Выбор изображения шашки
         switch (a) {
-            case 1:
+            case 1: //Белая
                 try {
                     return ImageIO.read(this.getClass().getResource("w.png"));
                 } catch (IOException e) {
                     return null;
                 }
 
-            case 2:
+            case 2: //Черная
                 try {
                     return ImageIO.read(this.getClass().getResource("b.png"));
                 } catch (IOException e) {
