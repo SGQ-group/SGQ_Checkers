@@ -11,14 +11,12 @@ public class Int_Checker {
         return positionX;
     }
 
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
 
     public int getPositionY() {
         return positionY;
-    }
-
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
     }
 
     public void setPositionY(int positionY) {
