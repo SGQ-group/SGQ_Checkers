@@ -5,7 +5,8 @@ import java.awt.event.MouseListener;
 
 public class Game implements Runnable, MouseListener {
     private JPanel panel;
-    private boolean bool = false;
+    private boolean bool1 = false;
+    private boolean bool2 = false;
     private int index;
 
     public void run() {
@@ -126,16 +127,20 @@ public class Game implements Runnable, MouseListener {
             int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
             if (positionX == posX && positionY == posY) {
                 index = i;
-                bool = true;
+                bool1 = true;
+                bool2 = false;
                 return;
             } else {
-                if (bool) {
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
-                    panel.print(panel.getGraphics());
-                    bool = false;
-                    return;
-                }
+                bool2 = true;
+            }
+        }
+        if (bool2) {
+            if (bool1) {
+                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
+                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
+                panel.print(panel.getGraphics());
+                bool1 = false;
+                bool2 = false;
             }
         }
     }
