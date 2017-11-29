@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 public class Drawing extends JPanel {
     private ArrayList<Checker> checkers_b = new ArrayList<>();
-    private ArrayList<Checker> checkers_r = new ArrayList<>();
+    private ArrayList<Checker> checkers_w = new ArrayList<>();
     private ImageIcon board;
     private boolean graf = true;
 
-    public Drawing() {
-        board = new ImageIcon(new Img().img1());
-    }
+    public Drawing() { board = new ImageIcon(new Img().img1()); }
 
     public void paintComponent(Graphics g) {
         // Обновить шашку
@@ -29,8 +27,8 @@ public class Drawing extends JPanel {
         for (int i = 0; i < 12; i++) {
             checkers_b.get(i).getIcon().paintIcon(this,g,checkers_b.get(i).getPosition_b().get(i).getPositionX(),
                     checkers_b.get(i).getPosition_b().get(i).getPositionY());
-            checkers_r.get(i).getIcon().paintIcon(this,g,checkers_r.get(i).getPosition_r().get(i).getPositionX(),
-                    checkers_r.get(i).getPosition_r().get(i).getPositionY());
+            checkers_w.get(i).getIcon().paintIcon(this,g,checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                    checkers_w.get(i).getPosition_w().get(i).getPositionY());
         }
     }
 
@@ -38,22 +36,22 @@ public class Drawing extends JPanel {
         return checkers_b;
     }
 
-    public ArrayList<Checker> getCheckers_r() {
-        return checkers_r;
+    public ArrayList<Checker> getCheckers_w() {
+        return checkers_w;
     }
 
     public void create(Graphics g){
 
         for (int i = 0; i < 12; i++) {
-            checkers_b.add(new Checker(1));
-            checkers_r.add(new Checker(2));
+            checkers_b.add(new Checker(2));
+            checkers_w.add(new Checker(1));
 
         }
         for (int i = 0; i < 12; i++) {
             checkers_b.get(i).getIcon().paintIcon(this,g,checkers_b.get(i).getPosition_b().get(i).getPositionX(),
                     checkers_b.get(i).getPosition_b().get(i).getPositionY());
-            checkers_r.get(i).getIcon().paintIcon(this,g,checkers_r.get(i).getPosition_r().get(i).getPositionX(),
-                    checkers_r.get(i).getPosition_r().get(i).getPositionY());
+            checkers_w.get(i).getIcon().paintIcon(this,g,checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                    checkers_w.get(i).getPosition_w().get(i).getPositionY());
         }
     }
 

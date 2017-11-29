@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Checker {
     private ImageIcon icon;
     private ArrayList<Int_Checker> position_b = new ArrayList<>();
-    private ArrayList<Int_Checker> position_r = new ArrayList<>();
+    private ArrayList<Int_Checker> position_w = new ArrayList<>();
 
     public Checker(int index) {
         icon = new ImageIcon(new Img().img2(index));
@@ -19,8 +19,8 @@ public class Checker {
         return position_b;
     }
 
-    public ArrayList<Int_Checker> getPosition_r() {
-        return position_r;
+    public ArrayList<Int_Checker> getPosition_w() {
+        return position_w;
     }
 
     public void init(){
@@ -37,18 +37,18 @@ public class Checker {
         position_b.add(new Int_Checker(552,258));
         position_b.add(new Int_Checker(750,258));
 
-        position_r.add(new Int_Checker(650,753));
-        position_r.add(new Int_Checker(452,753));
-        position_r.add(new Int_Checker(254,753));
-        position_r.add(new Int_Checker(56,753));
-        position_r.add(new Int_Checker(750,654));
-        position_r.add(new Int_Checker(552,654));
-        position_r.add(new Int_Checker(354,654));
-        position_r.add(new Int_Checker(156,654));
-        position_r.add(new Int_Checker(650,555));
-        position_r.add(new Int_Checker(452,555));
-        position_r.add(new Int_Checker(254,555));
-        position_r.add(new Int_Checker(56,555));
+        position_w.add(new Int_Checker(650,753));
+        position_w.add(new Int_Checker(452,753));
+        position_w.add(new Int_Checker(254,753));
+        position_w.add(new Int_Checker(56,753));
+        position_w.add(new Int_Checker(750,654));
+        position_w.add(new Int_Checker(552,654));
+        position_w.add(new Int_Checker(354,654));
+        position_w.add(new Int_Checker(156,654));
+        position_w.add(new Int_Checker(650,555));
+        position_w.add(new Int_Checker(452,555));
+        position_w.add(new Int_Checker(254,555));
+        position_w.add(new Int_Checker(56,555));
     }
 
 }
