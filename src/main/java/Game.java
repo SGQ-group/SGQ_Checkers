@@ -131,9 +131,25 @@ public class Game implements Runnable, MouseListener {
                 index = i;
                 bool1 = true;
                 bool2 = false;
+                bool3 = false;
+                bool4 = false;
                 return;
             } else {
                 bool2 = true;
+            }
+        }
+        for (int i = 0; i < 12; i++) {
+            int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
+            int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
+            if (positionX == posX && positionY == posY) {
+                index = i;
+                bool1 = false;
+                bool2 = false;
+                bool3 = true;
+                bool4 = false;
+                return;
+            } else {
+                bool4 = true;
             }
         }
         if (bool2) {
@@ -143,18 +159,8 @@ public class Game implements Runnable, MouseListener {
                 panel.print(panel.getGraphics());
                 bool1 = false;
                 bool2 = false;
-            }
-        }
-        for (int i = 0; i < 12; i++) {
-            int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
-            int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
-            if (positionX == posX && positionY == posY) {
-                index = i;
-                bool3 = true;
+                bool3 = false;
                 bool4 = false;
-                return;
-            } else {
-                bool4 = true;
             }
         }
         if (bool4) {
@@ -162,6 +168,8 @@ public class Game implements Runnable, MouseListener {
                 ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX);
                 ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY);
                 panel.print(panel.getGraphics());
+                bool1 = false;
+                bool2 = false;
                 bool3 = false;
                 bool4 = false;
             }
