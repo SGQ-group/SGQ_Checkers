@@ -124,6 +124,7 @@ public class Game implements Runnable, MouseListener {
     }
 
     private void checkCell(int positionX, int positionY) {
+        //Проверка белых шашек
         for (int i = 0; i < 12; i++) {
             int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX();
             int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
@@ -138,6 +139,7 @@ public class Game implements Runnable, MouseListener {
                 bool2 = true;
             }
         }
+        //Проверка черных шашек
         for (int i = 0; i < 12; i++) {
             int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
             int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
@@ -154,25 +156,31 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool2) {
             if (bool1) {
-                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
-                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
-                panel.print(panel.getGraphics());
-                bool1 = false;
-                bool2 = false;
-                bool3 = false;
-                bool4 = false;
+                paintCheckerW(positionX,positionY);
             }
         }
         if (bool4) {
             if (bool3) {
-                ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX);
-                ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY);
-                panel.print(panel.getGraphics());
-                bool1 = false;
-                bool2 = false;
-                bool3 = false;
-                bool4 = false;
+                paintCheckerB(positionX,positionY);
             }
         }
+    }
+    private void paintCheckerW(int positionX, int positionY){
+        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
+        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
+        panel.print(panel.getGraphics());
+        bool1 = false;
+        bool2 = false;
+        bool3 = false;
+        bool4 = false;
+    }
+    private void paintCheckerB(int positionX, int positionY){
+        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX);
+        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY);
+        panel.print(panel.getGraphics());
+        bool1 = false;
+        bool2 = false;
+        bool3 = false;
+        bool4 = false;
     }
 }
