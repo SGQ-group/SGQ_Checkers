@@ -154,13 +154,17 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool2) {
             if (bool1) {
-                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
-                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
-                panel.print(panel.getGraphics());
-                bool1 = false;
-                bool2 = false;
-                bool3 = false;
-                bool4 = false;
+                if (((positionX + 99) == ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionX()) || ((positionX - 99) == ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionX())) {
+                    if ((positionY - 99) == ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY()) {
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX);
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                    }
+                }
             }
         }
         if (bool4) {
