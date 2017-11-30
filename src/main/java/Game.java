@@ -76,7 +76,7 @@ public class Game implements Runnable, MouseListener {
         if (x >= 60.0 && y >= 60.0 && x <= 852.0 && y <= 157.0) {
             if (x >= 159.0 && x <= 255.0) checkCell(159, 60);
             if (x >= 357.0 && x <= 453.0) checkCell(357, 60);
-            if (x >= 555.0 && x <= 651.0) checkCell(753, 60);
+            if (x >= 555.0 && x <= 651.0) checkCell(555, 60);
             if (x >= 753.0 && x <= 849.0) checkCell(753, 60);
         }
         if (x >= 60.0 && y >= 159.0 && x <= 852.0 && y <= 260.0) {
