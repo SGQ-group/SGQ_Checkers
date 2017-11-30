@@ -174,13 +174,22 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool4) {
             if (bool3) {
-                ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX);
-                ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY);
-                panel.print(panel.getGraphics());
-                bool1 = false;
-                bool2 = false;
-                bool3 = false;
-                bool4 = false;
+                int posX_1 = positionX + 99;
+                int posX_2 = positionX - 99;
+                int posY_1 = positionY - 99;
+                int checkerX = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionX();
+                int checkerY = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY();
+                if ((posX_1 == checkerX) || (posX_2 == checkerX)) {
+                    if (posY_1 == checkerY) {
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX);
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                    }
+                }
             }
         }
     }
