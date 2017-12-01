@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class Game implements Runnable, MouseListener {
     private JPanel panel;
@@ -129,6 +130,12 @@ public class Game implements Runnable, MouseListener {
             int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
             if (positionX == posX && positionY == posY) {
                 index = i;
+                ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
+                for (int j = 0; j < 2; j++) { //Цикл бл.. не трогать
+                    int_rectangle.add(new Int_Checker(positionX+99,positionY-99));
+                    int_rectangle.add(new Int_Checker(positionX-99,positionY-99));
+                }
+                ((Drawing) panel).setInt_rectangle(int_rectangle);
                 bool1 = true;
                 bool2 = false;
                 bool3 = false;

@@ -36,4 +36,12 @@ public class Img {
 
         }
     }
+
+    public BufferedImage img3(){
+        try {
+            return ImageIO.read(this.getClass().getResource("r.png"));
+        } catch (IOException e) {
+            return null;
+        }
+    }
 }

@@ -5,31 +5,43 @@ import java.util.ArrayList;
 public class Drawing extends JPanel {
     private ArrayList<Checker> checkers_b = new ArrayList<>();
     private ArrayList<Checker> checkers_w = new ArrayList<>();
+    private ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
+    private ImageIcon rect;
     private ImageIcon board;
     private boolean graf = true;
 
-    public Drawing() { board = new ImageIcon(new Img().img1()); }
+    public Drawing() {
+        rect = new ImageIcon(new Img().img3());
+        board = new ImageIcon(new Img().img1());
+    }
 
     public void paintComponent(Graphics g) {
         // Обновить шашку
         super.paintComponent(g);
-            board.paintIcon(this,g,2,2);
-            if(graf){
-                create(g);
-            } else  {
+        board.paintIcon(this, g, 2, 2);
+        if (graf) {
+            create(g);
+        } else {
 
-            }
+        }
     }
 
     public void print(Graphics g) {
         super.print(g);
 //        create(g);
         for (int i = 0; i < 12; i++) {
-            checkers_b.get(i).getIcon().paintIcon(this,g,checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+            checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
                     checkers_b.get(i).getPosition_b().get(i).getPositionY());
-            checkers_w.get(i).getIcon().paintIcon(this,g,checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+            checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
                     checkers_w.get(i).getPosition_w().get(i).getPositionY());
         }
+        for (Int_Checker anInt_rectangle : int_rectangle) {
+            rect.paintIcon(this, g, anInt_rectangle.getPositionX(), anInt_rectangle.getPositionY());
+        }
+    }
+
+    public void setInt_rectangle(ArrayList<Int_Checker> int_rectangle) {
+        this.int_rectangle = int_rectangle;
     }
 
     public ArrayList<Checker> getCheckers_b() {
@@ -40,7 +52,7 @@ public class Drawing extends JPanel {
         return checkers_w;
     }
 
-    public void create(Graphics g){
+    public void create(Graphics g) {
 
         for (int i = 0; i < 12; i++) {
             checkers_b.add(new Checker(2));
@@ -48,9 +60,9 @@ public class Drawing extends JPanel {
 
         }
         for (int i = 0; i < 12; i++) {
-            checkers_b.get(i).getIcon().paintIcon(this,g,checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+            checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
                     checkers_b.get(i).getPosition_b().get(i).getPositionY());
-            checkers_w.get(i).getIcon().paintIcon(this,g,checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+            checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
                     checkers_w.get(i).getPosition_w().get(i).getPositionY());
         }
     }
