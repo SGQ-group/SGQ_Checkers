@@ -9,6 +9,11 @@ public class Drawing extends JPanel {
     private ImageIcon rect;
     private ImageIcon board;
     private boolean graf = true;
+    private boolean bool5 = false;
+
+    public void setBool5(boolean bool5) {
+        this.bool5 = bool5;
+    }
 
     public Drawing() {
         rect = new ImageIcon(new Img().img3());
@@ -29,14 +34,23 @@ public class Drawing extends JPanel {
     public void print(Graphics g) {
         super.print(g);
 //        create(g);
-        for (int i = 0; i < 12; i++) {
-            checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
-                    checkers_b.get(i).getPosition_b().get(i).getPositionY());
-            checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
-                    checkers_w.get(i).getPosition_w().get(i).getPositionY());
-        }
-        for (Int_Checker anInt_rectangle : int_rectangle) {
-            rect.paintIcon(this, g, anInt_rectangle.getPositionX(), anInt_rectangle.getPositionY());
+        if(bool5) {
+            for (int i = 0; i < 12; i++) {
+                checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                        checkers_b.get(i).getPosition_b().get(i).getPositionY());
+                checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                        checkers_w.get(i).getPosition_w().get(i).getPositionY());
+            }
+            for (Int_Checker anInt_rectangle : int_rectangle) {
+                rect.paintIcon(this, g, anInt_rectangle.getPositionX(), anInt_rectangle.getPositionY());
+            }
+        }else {
+            for (int i = 0; i < 12; i++) {
+                checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                        checkers_b.get(i).getPosition_b().get(i).getPositionY());
+                checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                        checkers_w.get(i).getPosition_w().get(i).getPositionY());
+            }
         }
     }
 
