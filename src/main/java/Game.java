@@ -174,24 +174,24 @@ public class Game implements Runnable, MouseListener {
                 ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
 //                for (int j = 0; j < 2; j++) { //Цикл бл.. не трогать
                 if (method_test(positionX + 99, positionY + 99)) {
-                    if (positionX < 741 && positionY < 741) {
+//                    if (positionX < 741 && positionY < 741)
                         int_rectangle.add(new Int_Checker(positionX + 99, positionY + 99));
-                    }
-                } else if (method_test(positionX + 198, positionY + 198, false)) {
-                    if (method_test2(positionX + 297, positionY + 297))
-                    if (positionX < 741 && positionY < 741) {
+
+                } else if (method_test(positionX + 99, positionY + 99, false)) {
+                    if (method_test2(positionX + 198, positionY + 198))
+//                    if (positionX < 741 && positionY < 741)
                         int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198));
-                    }
+
                 }
                 if (method_test(positionX - 99, positionY + 99)) {
-                    if (positionX > 60 && positionY < 741) {
+//                    if (positionX > 60 && positionY < 741)
                         int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99));
-                    }
-                } else if (method_test(positionX - 198, positionY + 198, false)) {
-                    if (method_test2(positionX - 297, positionY + 297))
-                    if (positionX > 60 && positionY < 741) {
+
+                } else if (method_test(positionX - 99, positionY + 99, false)) {
+                    if (method_test2(positionX - 198, positionY + 198))
+//                    if (positionX > 60 && positionY < 741)
                         int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198));
-                    }
+
                 }
 //                }
                 ((Drawing) panel).setInt_rectangle(int_rectangle);
