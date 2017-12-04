@@ -134,22 +134,24 @@ public class Game implements Runnable, MouseListener {
                 ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
 //                for (int j = 0; j < 2; j++) { //Цикл бл.. не трогать
                 if (method_test(positionX + 99, positionY - 99)) {
-                    if (positionX < 741 && positionY > 60) {
+//                    if (positionX < 741 && positionY > 60) {
                         int_rectangle.add(new Int_Checker(positionX + 99, positionY - 99));
-                    }
-                } else if (method_test(positionX + 198, positionY - 198, true)) {
-                    if (positionX < 741 && positionY > 60) {
-                        int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198));
-                    }
+
+                } else if (method_test(positionX + 99, positionY - 99, true)) {
+                    if (method_test2(positionX + 198, positionY - 198))
+//                        if (positionX < 741 && positionY > 60)
+                            int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198));
+
+
                 }
                 if (method_test(positionX - 99, positionY - 99)) {
-                    if (positionX < 741 && positionY > 60) {
+//                    if (positionX < 741 && positionY > 60)
                         int_rectangle.add(new Int_Checker(positionX - 99, positionY - 99));
-                    }
-                } else if (method_test(positionX - 198, positionY - 198, true)) {
-                    if (positionX < 741 && positionY > 60) {
+
+                } else if (method_test(positionX - 99, positionY - 99, true)) {
+                    if (method_test2(positionX - 198, positionY - 198))
+//                    if (positionX < 741 && positionY > 60)
                         int_rectangle.add(new Int_Checker(positionX - 198, positionY - 198));
-                    }
                 }
 //                }
                 ((Drawing) panel).setInt_rectangle(int_rectangle);
@@ -176,6 +178,7 @@ public class Game implements Runnable, MouseListener {
                         int_rectangle.add(new Int_Checker(positionX + 99, positionY + 99));
                     }
                 } else if (method_test(positionX + 198, positionY + 198, false)) {
+                    if (method_test2(positionX + 297, positionY + 297))
                     if (positionX < 741 && positionY < 741) {
                         int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198));
                     }
@@ -185,6 +188,7 @@ public class Game implements Runnable, MouseListener {
                         int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99));
                     }
                 } else if (method_test(positionX - 198, positionY + 198, false)) {
+                    if (method_test2(positionX - 297, positionY + 297))
                     if (positionX > 60 && positionY < 741) {
                         int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198));
                     }
@@ -269,16 +273,48 @@ public class Game implements Runnable, MouseListener {
                 int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX();
                 int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
                 if (positionX == posX && positionY == posY)
-                    return true;
+                    return false;
             }
-        } else {
             for (int i = 0; i < 12; i++) {
                 int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
                 int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
                 if (positionX == posX && positionY == posY)
                     return true;
             }
+
+        } else {
+            for (int i = 0; i < 12; i++) {
+                int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX();
+                int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
+                if (positionX == posX && positionY == posY)
+                    return true;
+            }
+            for (int i = 0; i < 12; i++) {
+                int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
+                int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
+                if (positionX == posX && positionY == posY)
+                    return false;
+            }
+
+
         }
-        return false;
+        return true;
+    }
+    private boolean method_test2(int positionX, int positionY) {
+
+            for (int i = 0; i < 12; i++) {
+                int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX();
+                int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
+                if (positionX == posX && positionY == posY)
+                    return false;
+            }
+
+            for (int i = 0; i < 12; i++) {
+                int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
+                int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
+                if (positionX == posX && positionY == posY)
+                    return false;
+            }
+                return true;
     }
 }
