@@ -6,11 +6,15 @@ import java.util.ArrayList;
 
 public class Game implements Runnable, MouseListener {
     private JPanel panel;
-    private boolean bool1 = false;
-    private boolean bool2 = false;
-    private boolean bool3 = false;
-    private boolean bool4 = false;
-    private boolean bool6 = false;
+    private boolean bool1 = false; //Для проверки нажатия на пустую клетку для белых
+    private boolean bool2 = false; //Для проверки нажатия на белую шашку
+    private boolean bool3 = false; //Для проверки нажатия на пустую клетку для чёрных
+    private boolean bool4 = false; //Для проверки нажатия на чёрную шашку
+    private boolean bool6 = false; //Для шагов на следующую клетку и через шашку
+    private boolean bool7 = false; //
+    private boolean bool8 = false; //
+    private boolean bool9 = false; //
+
     private int index;
     private ImageIcon icon;
 
@@ -58,7 +62,7 @@ public class Game implements Runnable, MouseListener {
 
     //////////////
     // util methods
-    private void printMouseEvent(MouseEvent e) {
+    private void printMouseEvent(MouseEvent e) {   //Клики мышкой
         int button = e.getButton();
         switch (button) {
             case MouseEvent.BUTTON1: {
@@ -74,7 +78,7 @@ public class Game implements Runnable, MouseListener {
         System.out.println("point: " + p);
     }
 
-    public void BoxTrigger(double x, double y) {
+    public void BoxTrigger(double x, double y) {    //Координаты чёрных клеток
         ((Drawing) panel).setGraf(false);
         if (x >= 60.0 && y >= 60.0 && x <= 852.0 && y <= 157.0) {
             if (x >= 159.0 && x <= 255.0) checkCell(159, 60);
@@ -143,20 +147,20 @@ public class Game implements Runnable, MouseListener {
                     if (method_test2(positionX + 198, positionY - 198))
                         if (method_test4(positionX + 198, positionY - 198)) {
                             int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198));
-                            bool6 = false;
+                            bool7 = true;
                         }
                 }
 
                 if (method_test(positionX - 99, positionY - 99)) {
                     if (method_test3(positionX - 99, positionY - 99)) {
                         int_rectangle.add(new Int_Checker(positionX - 99, positionY - 99));
-                        bool6 = true;
+                        bool8 = true;
                     }
                 } else if (method_test(positionX - 99, positionY - 99, true)) {
                     if (method_test2(positionX - 198, positionY - 198))
                         if (method_test3(positionX - 198, positionY - 198)) {
                             int_rectangle.add(new Int_Checker(positionX - 198, positionY - 198));
-                            bool6 = false;
+                            bool9 = true;
                         }
                 }
 //                }
@@ -189,20 +193,20 @@ public class Game implements Runnable, MouseListener {
                     if (method_test2(positionX + 198, positionY + 198))
                         if (method_test4(positionX + 198, positionY + 198)) {
                             int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198));
-                            bool6 = false;
+                            bool7 = true;
                         }
                 }
                 if (method_test(positionX - 99, positionY + 99)) {
                     if (method_test3(positionX - 99, positionY + 99)) {
                         int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99));
-                        bool6 = true;
+                        bool8 = true;
                     }
 
                 } else if (method_test(positionX - 99, positionY + 99, false)) {
                     if (method_test2(positionX - 198, positionY + 198))
                         if (method_test3(positionX - 198, positionY + 198)) {
                             int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198));
-                            bool6 = false;
+                            bool9 = true;
                         }
                 }
 //                }
@@ -220,20 +224,30 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool2) {
             if (bool1) {
-                if (bool6) {
-                    steps(positionX + 99, positionX - 99, positionY + 99, true, 99);
-                } else {
-                    steps(positionX + 198, positionX - 198, positionY + 198, true, 198);
-                }
+                if (bool6) steps(positionX + 99, positionY + 99, true, 99,true);
+                if (bool7) steps(positionX - 99, positionY + 99, true, 99,false);
+                if (bool8) steps(positionX + 198, positionY + 198, true, 198,true);
+                if (bool9) steps(positionX - 198, positionY + 198, true, 198,false);
+
+
+//                if (bool6) {
+//                    steps(positionX + 99, positionX - 99, positionY + 99, true, 99);
+//                } else if (bool7) {
+//                    steps(positionX + 198, positionX - 198, positionY + 198, true, 198);
+//                }
             }
         }
         if (bool4) {
             if (bool3) {
-                if (bool6) {
-                    steps(positionX + 99, positionX - 99, positionY - 99, false, 99);
-                } else {
-                    steps(positionX + 198, positionX - 198, positionY - 198, false, 198);
-                }
+                if (bool6) steps(positionX + 99, positionY - 99, false, 99,true);
+                if (bool7) steps(positionX - 99, positionY - 99, false, 99,false);
+                if (bool8) steps(positionX + 198, positionY - 198, false, 198,true);
+                if (bool9) steps(positionX - 198, positionY - 198, false, 198, false);
+//                if (bool6) {
+//                    steps(positionX + 99, positionX - 99, positionY - 99, false, 99);
+//                } else if (bool7) {
+//                    steps(positionX + 198, positionX - 198, positionY - 198, false, 198);
+//                }
             }
         }
     }
@@ -289,16 +303,16 @@ public class Game implements Runnable, MouseListener {
         return true;
     }
 
-    private boolean method_test2(int positionX, int positionY) {
+    private boolean method_test2(int positionX, int positionY) {  //Проверка на наличие шашки
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; i++) {  //Для белых
             int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX();
             int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY();
             if (positionX == posX && positionY == posY)
                 return false;
         }
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; i++) { //Для чёрных
             int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX();
             int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY();
             if (positionX == posX && positionY == posY)
@@ -319,11 +333,12 @@ public class Game implements Runnable, MouseListener {
         return false;
     }
 
-    private void steps(int positionX_1, int positionX_2, int positionY, boolean bol, int inta) {
+    private void steps(int positionX_1, int positionY, boolean bol, int inta, boolean bool) {
         if (bol) {
             int checkerX = ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionX();
             int checkerY = ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY();
-            if (positionX_1 == checkerX) {
+            if (bool) {
+                if (positionX_1 == checkerX)
                 if (positionY == checkerY) {
                     ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
                     ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
@@ -333,10 +348,15 @@ public class Game implements Runnable, MouseListener {
                     bool2 = false;
                     bool3 = false;
                     bool4 = false;
+                    bool6 = false;
+                    bool7 = false;
+                    bool8 = false;
+                    bool9 = false;
                 }
-            } else if (positionX_2 == checkerX) {
+            } else {
+                if (positionX_1 == checkerX)
                 if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_2 + inta);
+                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
                     ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
                     ((Drawing) panel).setBool5(false);
                     panel.print(panel.getGraphics());
@@ -344,12 +364,17 @@ public class Game implements Runnable, MouseListener {
                     bool2 = false;
                     bool3 = false;
                     bool4 = false;
+                    bool6 = false;
+                    bool7 = false;
+                    bool8 = false;
+                    bool9 = false;
                 }
             }
         } else {
             int checkerX = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionX();
             int checkerY = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY();
-            if (positionX_1 == checkerX) {
+            if (bool) {
+                if (true)
                 if (positionY == checkerY) {
                     ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
                     ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
@@ -359,10 +384,15 @@ public class Game implements Runnable, MouseListener {
                     bool2 = false;
                     bool3 = false;
                     bool4 = false;
+                    bool6 = false;
+                    bool7 = false;
+                    bool8 = false;
+                    bool9 = false;
                 }
-            } else if (positionX_2 == checkerX) {
+            } else {
+                if (positionX_1 == checkerX)
                 if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_2 + inta);
+                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
                     ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
                     ((Drawing) panel).setBool5(false);
                     panel.print(panel.getGraphics());
@@ -370,6 +400,10 @@ public class Game implements Runnable, MouseListener {
                     bool2 = false;
                     bool3 = false;
                     bool4 = false;
+                    bool6 = false;
+                    bool7 = false;
+                    bool8 = false;
+                    bool9 = false;
                 }
             }
         }
