@@ -17,31 +17,48 @@ public class Img {
     public BufferedImage img2(int a) {
         //Выбор изображения шашки
         switch (a) {
-            case 1: //Белая
+            case 1: //Белая шашка
                 try {
                     return ImageIO.read(this.getClass().getResource("w.png"));
                 } catch (IOException e) {
                     return null;
                 }
-
-            case 2: //Черная
+            case 2: //Черная шашка
                 try {
                     return ImageIO.read(this.getClass().getResource("b.png"));
                 } catch (IOException e) {
                     return null;
                 }
-
             default:
                 return null;
-
         }
     }
 
-    public BufferedImage img3(){
+    public BufferedImage img3() {
         try {
             return ImageIO.read(this.getClass().getResource("r.png"));
         } catch (IOException e) {
             return null;
+        }
+    }
+
+    public BufferedImage img4(int a) {
+        //Выбор изображения шашки
+        switch (a) {
+            case 1: //Белая дамка
+                try {
+                    return ImageIO.read(this.getClass().getResource("wd.png"));
+                } catch (IOException e) {
+                    return null;
+                }
+            case 2: //Черная дамка
+                try {
+                    return ImageIO.read(this.getClass().getResource("bd.png"));
+                } catch (IOException e) {
+                    return null;
+                }
+            default:
+                return null;
         }
     }
 }

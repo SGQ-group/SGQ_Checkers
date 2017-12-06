@@ -14,6 +14,7 @@ public class Game implements Runnable, MouseListener {
     private boolean bool7 = false; //Для шагов на следующую клетку направо наверх
     private boolean bool8 = false; //Для шагов на следующую клетку налево
     private boolean bool9 = false; //Для шагов на следующую клетку налево наверх
+    private int index;
 
     public void run() {   //Этот класс короче зачем-то нужен, я уже забыл. Просто не трогай его
         JFrame frame = new JFrame();
