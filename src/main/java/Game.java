@@ -222,10 +222,10 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool2) {  //Проверяем клик на белую шашку
             if (bool1) { //Проверяем клик на пустую клетку для белых
-                if (bool6) steps(positionX + 99, positionY + 99, true, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
-                if (bool7) steps(positionX - 99, positionY + 99, true, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
-                if (bool8) steps(positionX + 198, positionY + 198, true, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
-                if (bool9) steps(positionX - 198, positionY + 198, true, 198,false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
+                if (bool6) steps(positionX - 99, positionY + 99, true, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                if (bool8) steps(positionX + 99, positionY + 99, true, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
+                if (bool7) steps(positionX - 198, positionY + 198, true, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                if (bool9) steps(positionX + 198, positionY + 198, true, 198,false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
 
 
 //                if (bool6) {
@@ -237,10 +237,10 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool4) {  //Проверяем клик на чёрную шашку
             if (bool3) { //Проверяем клик на пустую клетку для чёрных
-                if (bool6) steps(positionX + 99, positionY - 99, false, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
-                if (bool7) steps(positionX - 99, positionY - 99, false, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
-                if (bool8) steps(positionX + 198, positionY - 198, false, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
-                if (bool9) steps(positionX - 198, positionY - 198, false, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
+                if (bool6) steps(positionX - 99, positionY - 99, false, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
+                if (bool8) steps(positionX + 99, positionY - 99, false, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
+                if (bool7) steps(positionX - 198, positionY - 198, false, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
+                if (bool9) steps(positionX + 198, positionY - 198, false, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
 //                if (bool6) {
 //                    steps(positionX + 99, positionX - 99, positionY - 99, false, 99);
 //                } else if (bool7) {
@@ -337,72 +337,72 @@ public class Game implements Runnable, MouseListener {
             int checkerY = ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY();
             if (bool) {
                 if (positionX_1 == checkerX)
-                if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
-                    ((Drawing) panel).setBool5(false);
-                    panel.print(panel.getGraphics());
-                    bool1 = false;
-                    bool2 = false;
-                    bool3 = false;
-                    bool4 = false;
-                    bool6 = false;
-                    bool7 = false;
-                    bool8 = false;
-                    bool9 = false;
-                }
+                    if (positionY == checkerY) {
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        ((Drawing) panel).setBool5(false);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                        bool6 = false;
+                        bool7 = false;
+                        bool8 = false;
+                        bool9 = false;
+                    }
             } else {
                 if (positionX_1 == checkerX)
-                if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
-                    ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
-                    ((Drawing) panel).setBool5(false);
-                    panel.print(panel.getGraphics());
-                    bool1 = false;
-                    bool2 = false;
-                    bool3 = false;
-                    bool4 = false;
-                    bool6 = false;
-                    bool7 = false;
-                    bool8 = false;
-                    bool9 = false;
-                }
+                    if (positionY == checkerY) {
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        ((Drawing) panel).setBool5(false);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                        bool6 = false;
+                        bool7 = false;
+                        bool8 = false;
+                        bool9 = false;
+                    }
             }
         } else {
             int checkerX = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionX();
             int checkerY = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY();
             if (bool) {
                 if (true)
-                if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
-                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
-                    ((Drawing) panel).setBool5(false);
-                    panel.print(panel.getGraphics());
-                    bool1 = false;
-                    bool2 = false;
-                    bool3 = false;
-                    bool4 = false;
-                    bool6 = false;
-                    bool7 = false;
-                    bool8 = false;
-                    bool9 = false;
-                }
+                    if (positionY == checkerY) {
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        ((Drawing) panel).setBool5(false);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                        bool6 = false;
+                        bool7 = false;
+                        bool8 = false;
+                        bool9 = false;
+                    }
             } else {
                 if (positionX_1 == checkerX)
-                if (positionY == checkerY) {
-                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
-                    ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
-                    ((Drawing) panel).setBool5(false);
-                    panel.print(panel.getGraphics());
-                    bool1 = false;
-                    bool2 = false;
-                    bool3 = false;
-                    bool4 = false;
-                    bool6 = false;
-                    bool7 = false;
-                    bool8 = false;
-                    bool9 = false;
-                }
+                    if (positionY == checkerY) {
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
+                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        ((Drawing) panel).setBool5(false);
+                        panel.print(panel.getGraphics());
+                        bool1 = false;
+                        bool2 = false;
+                        bool3 = false;
+                        bool4 = false;
+                        bool6 = false;
+                        bool7 = false;
+                        bool8 = false;
+                        bool9 = false;
+                    }
             }
         }
     }
