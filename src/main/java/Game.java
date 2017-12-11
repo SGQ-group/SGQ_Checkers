@@ -14,7 +14,14 @@ public class Game implements Runnable, MouseListener {
     private boolean bool7 = false; //Для шагов на следующую клетку направо наверх
     private boolean bool8 = false; //Для шагов на следующую клетку налево
     private boolean bool9 = false; //Для шагов на следующую клетку налево наверх
+    private boolean bool10 = false; //Для шагов на следующую клетку налево наверх
+    private boolean bool11 = false; //Для шагов на следующую клетку налево наверх
+
+    private boolean boolGame = true;
+
     private int index;
+    private int index2;
+    private int index3;
 
     public void run() {   //Этот класс короче зачем-то нужен, я уже забыл. Просто не трогай его
         JFrame frame = new JFrame();
@@ -129,103 +136,116 @@ public class Game implements Runnable, MouseListener {
     }
 
     private void checkCell(int positionX, int positionY) {  //Для проверки чёрных клеток
-        for (int i = 0; i < 12; i++) {  // Белые шашки
-            int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX(); //Проверяем по X
-            int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY(); //Проверяем по Y
-            if (positionX == posX && positionY == posY) { //Проверяем совпадают ли координаты шашки с теми куда кликнули
-                index = i;
-                ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
+        if (boolGame) {
+            for (int i = 0; i < 12; i++) {  // Белые шашки
+                int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX(); //Проверяем по X
+                int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY(); //Проверяем по Y
+                if (positionX == posX && positionY == posY) { //Проверяем совпадают ли координаты шашки с теми куда кликнули
+                    index = i;
+                    ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
 //                for (int j = 0; j < 2; j++) { //Цикл бл.. не трогать
-                if (method_test(positionX + 99, positionY - 99)) {  //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
-                    if (method_test4(positionX + 99, positionY - 99)) {  //Проверяем занята ли клетка справа
-                        int_rectangle.add(new Int_Checker(positionX + 99, positionY - 99)); //Рисуем квадратик
-                        bool6 = true;
-                    }
-                } else if (method_test(positionX + 99, positionY - 99, true)) { //Проверем стоит ли шашка на клетке справа. Если стоит, то идём дальше
-                    if (method_test2(positionX + 198, positionY - 198))               //Проверяем занята ли клетка справа через одну
-                        if (method_test4(positionX + 198, positionY - 198)) {         //Проверяем свободна ли клетка справа через одну???
-                            int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198)); //Рисуем квадратик
-                            bool7 = true;
+                    if (method_test(positionX + 99, positionY - 99, 0)) {  //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                        if (method_test4(positionX + 99, positionY - 99)) {  //Проверяем занята ли клетка справа
+                            int_rectangle.add(new Int_Checker(positionX + 99, positionY - 99)); //Рисуем квадратик
+//                        bool10 = false;
+                            bool6 = true;
                         }
-                }
+                    } else if (method_test(positionX + 99, positionY - 99, true)) { //Проверем стоит ли шашка на клетке справа. Если стоит, то идём дальше
+                        if (method_test2(positionX + 198, positionY - 198))               //Проверяем занята ли клетка справа через одну
+                            if (method_test4(positionX + 198, positionY - 198)) {         //Проверяем свободна ли клетка справа через одну???
+                                int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198)); //Рисуем квадратик
+//                            bool10 = false;
+                                bool7 = true;
+                            }
+                    }
 
-                if (method_test(positionX - 99, positionY - 99)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше, если не стоит
-                    if (method_test3(positionX - 99, positionY - 99)) {     //Проверяем занята ли клетка слева???
-                        int_rectangle.add(new Int_Checker(positionX - 99, positionY - 99)); //Рисуем квадратик
-                        bool8 = true;
-                    }
-                } else if (method_test(positionX - 99, positionY - 99, true)) { //Проверяем стоит ли шашка на клетке слева. Если нет, то идём дальше
-                    if (method_test2(positionX - 198, positionY - 198))               //Проверяем стоит ли шашка на клетке слева через одну. Если нет, то идём дальше
-                        if (method_test3(positionX - 198, positionY - 198)) {         //Проверяем занята ли клетка сверху слева???
-                            int_rectangle.add(new Int_Checker(positionX - 198, positionY - 198)); //Рисуем квадратик
-                            bool9 = true;
+                    if (method_test(positionX - 99, positionY - 99, 1)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше, если не стоит
+                        if (method_test3(positionX - 99, positionY - 99)) {     //Проверяем занята ли клетка слева???
+                            int_rectangle.add(new Int_Checker(positionX - 99, positionY - 99)); //Рисуем квадратик
+//                        bool11 = false;
+                            bool8 = true;
                         }
-                }
+                    } else if (method_test(positionX - 99, positionY - 99, true)) { //Проверяем стоит ли шашка на клетке слева. Если нет, то идём дальше
+                        if (method_test2(positionX - 198, positionY - 198))               //Проверяем стоит ли шашка на клетке слева через одну. Если нет, то идём дальше
+                            if (method_test3(positionX - 198, positionY - 198)) {         //Проверяем занята ли клетка сверху слева???
+                                int_rectangle.add(new Int_Checker(positionX - 198, positionY - 198)); //Рисуем квадратик
+//                            bool10 = false;
+                                bool9 = true;
+                            }
+                    }
 //                }
-                ((Drawing) panel).setInt_rectangle(int_rectangle);
-                ((Drawing) panel).setBool5(true);
-                panel.print(panel.getGraphics());
-                bool1 = true;
-                bool2 = false;
-                bool3 = false;
-                bool4 = false;
-                return;
-            } else {
-                bool2 = true;
+                    ((Drawing) panel).setInt_rectangle(int_rectangle);
+                    ((Drawing) panel).setBool5(true);
+                    panel.print(panel.getGraphics());
+                    bool1 = true;
+                    bool2 = false;
+                    bool3 = false;
+                    bool4 = false;
+                    return;
+                } else {
+                    bool2 = true;
+                }
             }
-        }
-        for (int i = 0; i < 12; i++) {  // Чёрные шашки
-            int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX(); //Проверяем по Х
-            int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY(); //Проверяем по Y
-            if (positionX == posX && positionY == posY) {       //Если координаты шашки и координаты куда мы кликнули совпадают, то мы идём дальше
-                index = i;
-                ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
+        } else {
+            for (int i = 0; i < 12; i++) {  // Чёрные шашки
+                int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX(); //Проверяем по Х
+                int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY(); //Проверяем по Y
+                if (positionX == posX && positionY == posY) {       //Если координаты шашки и координаты куда мы кликнули совпадают, то мы идём дальше
+                    index = i;
+                    ArrayList<Int_Checker> int_rectangle = new ArrayList<>();
 //                for (int j = 0; j < 2; j++) { //Цикл бл.. не трогать
-                if (method_test(positionX + 99, positionY + 99)) {      //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
-                    if (method_test4(positionX + 99, positionY + 99)) { //Проверяем занята ли клетка справа???
-                        int_rectangle.add(new Int_Checker(positionX + 99, positionY + 99)); //Рисуем квадратик
-                        bool6 = true;
-                    }
-
-                } else if (method_test(positionX + 99, positionY + 99, false)) { //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
-                    if (method_test2(positionX + 198, positionY + 198))                //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит
-                        if (method_test4(positionX + 198, positionY + 198)) {          //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит???
-                            int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198)); //Рисуем квадратик
-                            bool7 = true;
+                    if (method_test(positionX + 99, positionY + 99, 0)) {      //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                        if (method_test4(positionX + 99, positionY + 99)) { //Проверяем занята ли клетка справа???
+                            int_rectangle.add(new Int_Checker(positionX + 99, positionY + 99)); //Рисуем квадратик
+//                        bool10 = false;
+                            bool6 = true;
                         }
-                }
-                if (method_test(positionX - 99, positionY + 99)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
-                    if (method_test3(positionX - 99, positionY + 99)) {     //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит???
-                        int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99)); //Рисуем квадратик
-                        bool8 = true;
-                    }
 
-                } else if (method_test(positionX - 99, positionY + 99, false)) {  //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
-                    if (method_test2(positionX - 198, positionY + 198))                 //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит
-                        if (method_test3(positionX - 198, positionY + 198)) {           //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит???
-                            int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198)); //Рисуем квадратик
-                            bool9 = true;
+                    } else if (method_test(positionX + 99, positionY + 99, false)) { //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                        if (method_test2(positionX + 198, positionY + 198))                //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит
+                            if (method_test4(positionX + 198, positionY + 198)) {          //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит???
+                                int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198)); //Рисуем квадратик
+                                bool7 = true;
+                            }
+                    }
+                    if (method_test(positionX - 99, positionY + 99, 1)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
+                        if (method_test3(positionX - 99, positionY + 99)) {     //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит???
+                            int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99)); //Рисуем квадратик
+//                        bool11 = false;
+                            bool8 = true;
                         }
-                }
+
+                    } else if (method_test(positionX - 99, positionY + 99, false)) {  //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
+                        if (method_test2(positionX - 198, positionY + 198))                 //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит
+                            if (method_test3(positionX - 198, positionY + 198)) {           //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит???
+                                int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198)); //Рисуем квадратик
+                                bool9 = true;
+                            }
+                    }
 //                }
-                ((Drawing) panel).setInt_rectangle(int_rectangle);
-                ((Drawing) panel).setBool5(true);
-                panel.print(panel.getGraphics());
-                bool1 = false;
-                bool2 = false;
-                bool3 = true;
-                bool4 = false;
-                return;
-            } else {
-                bool4 = true;
+                    ((Drawing) panel).setInt_rectangle(int_rectangle);
+                    ((Drawing) panel).setBool5(true);
+                    panel.print(panel.getGraphics());
+                    bool1 = false;
+                    bool2 = false;
+                    bool3 = true;
+                    bool4 = false;
+                    return;
+                } else {
+                    bool4 = true;
+                }
             }
         }
         if (bool2) {  //Проверяем клик на белую шашку
             if (bool1) { //Проверяем клик на пустую клетку для белых
-                if (bool6) steps(positionX - 99, positionY + 99, true, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
-                if (bool8) steps(positionX + 99, positionY + 99, true, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
-                if (bool7) steps(positionX - 198, positionY + 198, true, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
-                if (bool9) steps(positionX + 198, positionY + 198, true, 198,false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
+                if (bool6)
+                    steps(positionX - 99, positionY + 99, true, 99, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                if (bool8)
+                    steps(positionX + 99, positionY + 99, true, 99, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
+                if (bool7)
+                    steps(positionX - 198, positionY + 198, true, 198, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                if (bool9)
+                    steps(positionX + 198, positionY + 198, true, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
 
 
 //                if (bool6) {
@@ -237,10 +257,14 @@ public class Game implements Runnable, MouseListener {
         }
         if (bool4) {  //Проверяем клик на чёрную шашку
             if (bool3) { //Проверяем клик на пустую клетку для чёрных
-                if (bool6) steps(positionX - 99, positionY - 99, false, 99,true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
-                if (bool8) steps(positionX + 99, positionY - 99, false, 99,false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
-                if (bool7) steps(positionX - 198, positionY - 198, false, 198,true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
-                if (bool9) steps(positionX + 198, positionY - 198, false, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
+                if (bool6)
+                    steps(positionX - 99, positionY - 99, false, 99, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
+                if (bool8)
+                    steps(positionX + 99, positionY - 99, false, 99, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
+                if (bool7)
+                    steps(positionX - 198, positionY - 198, false, 198, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
+                if (bool9)
+                    steps(positionX + 198, positionY - 198, false, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
 //                if (bool6) {
 //                    steps(positionX + 99, positionX - 99, positionY - 99, false, 99);
 //                } else if (bool7) {
@@ -250,19 +274,35 @@ public class Game implements Runnable, MouseListener {
         }
     }
 
-    private boolean method_test(int positionX, int positionY) { //Метод для проверки стоят ли шашки на клетке куда мы кликнули
+    private boolean method_test(int positionX, int positionY, int a) { //Метод для проверки стоят ли шашки на клетке куда мы кликнули
 
         for (int i = 0; i < 12; i++) { //Перебираем все белые шашки
             int posX = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionX(); //Проверяем координаты белых шашек по X
             int posY = ((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).getPositionY(); //Проверяем координаты белых шашек по Y
-            if (positionX == posX && positionY == posY) //Если координаты какой-то белой шашки совпали с координатами клика
+            if (positionX == posX && positionY == posY) { //Если координаты какой-то белой шашки совпали с координатами клика
+                if (a == 0) {
+                    index2 = i;
+                    bool10 = true;
+                } else {
+                    index3 = i;
+                    bool11 = true;
+                }
                 return false; //Возвращаем false
+            }
         }
         for (int i = 0; i < 12; i++) { //Перебираем все чёрные шашки
             int posX = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionX(); //Проверяем координаты чёрных шашек по X
             int posY = ((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).getPositionY(); //Проверяе координаты чёрных шашек по Y
-            if (positionX == posX && positionY == posY) //Если координаты какой-то чёрной шашки совпали с координатами клика
+            if (positionX == posX && positionY == posY) { //Если координаты какой-то чёрной шашки совпали с координатами клика
+                if (a == 0) {
+                    index2 = i;
+                    bool10 = true;
+                } else {
+                    index3 = i;
+                    bool11 = true;
+                }
                 return false; //Возвращаем false
+            }
         }
         return true;
     }
@@ -340,6 +380,11 @@ public class Game implements Runnable, MouseListener {
                     if (positionY == checkerY) {
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        if (bool10) {
+                            ((Drawing) panel).getCheckers_b().get(index2).getPosition_b().get(index2).setPositionX(2000);
+                            ((Drawing) panel).getCheckers_b().get(index2).getPosition_b().get(index2).setPositionY(2000);
+                            bool10 = false;
+                        }
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -350,12 +395,20 @@ public class Game implements Runnable, MouseListener {
                         bool7 = false;
                         bool8 = false;
                         bool9 = false;
+                        bool10 = false;
+                        bool11 = false;
+                        boolGame = false;
                     }
             } else {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        if (bool11) {
+                            ((Drawing) panel).getCheckers_b().get(index3).getPosition_b().get(index3).setPositionX(2000);
+                            ((Drawing) panel).getCheckers_b().get(index3).getPosition_b().get(index3).setPositionY(2000);
+                            bool11 = false;
+                        }
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -366,16 +419,24 @@ public class Game implements Runnable, MouseListener {
                         bool7 = false;
                         bool8 = false;
                         bool9 = false;
+                        bool10 = false;
+                        bool11 = false;
+                        boolGame = false;
                     }
             }
         } else {
             int checkerX = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionX();
             int checkerY = ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY();
             if (bool) {
-                if (true)
+                if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
                         ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
                         ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        if (bool10) {
+                            ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionX(2000);
+                            ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionY(2000);
+                            bool10 = false;
+                        }
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -386,12 +447,20 @@ public class Game implements Runnable, MouseListener {
                         bool7 = false;
                         bool8 = false;
                         bool9 = false;
+                        bool10 = false;
+                        bool11 = false;
+                        boolGame = true;
                     }
             } else {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
                         ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
                         ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        if (bool11) {
+                            ((Drawing) panel).getCheckers_w().get(index3).getPosition_w().get(index3).setPositionX(2000);
+                            ((Drawing) panel).getCheckers_w().get(index3).getPosition_w().get(index3).setPositionY(2000);
+                            bool11 = false;
+                        }
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -402,6 +471,9 @@ public class Game implements Runnable, MouseListener {
                         bool7 = false;
                         bool8 = false;
                         bool9 = false;
+                        bool10 = false;
+                        bool11 = false;
+                        boolGame = true;
                     }
             }
         }
