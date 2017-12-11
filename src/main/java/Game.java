@@ -385,6 +385,9 @@ public class Game implements Runnable, MouseListener {
                             ((Drawing) panel).getCheckers_b().get(index2).getPosition_b().get(index2).setPositionY(2000);
                             bool10 = false;
                         }
+                        if (!((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).isKing())
+                            if (((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY() == 60)
+                                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setKing(true);
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -409,6 +412,9 @@ public class Game implements Runnable, MouseListener {
                             ((Drawing) panel).getCheckers_b().get(index3).getPosition_b().get(index3).setPositionY(2000);
                             bool11 = false;
                         }
+                        if (!((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).isKing())
+                            if (((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY() == 60)
+                                ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setKing(true);
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -436,7 +442,12 @@ public class Game implements Runnable, MouseListener {
                             ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionX(2000);
                             ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionY(2000);
                             bool10 = false;
+
                         }
+                        if (!((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).isKing())
+                            if (((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY() == 753)
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setKing(true);
+
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;
@@ -461,6 +472,9 @@ public class Game implements Runnable, MouseListener {
                             ((Drawing) panel).getCheckers_w().get(index3).getPosition_w().get(index3).setPositionY(2000);
                             bool11 = false;
                         }
+                        if (!((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).isKing())
+                            if (((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).getPositionY() == 753)
+                                ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setKing(true);
                         ((Drawing) panel).setBool5(false);
                         panel.print(panel.getGraphics());
                         bool1 = false;

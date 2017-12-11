@@ -33,23 +33,54 @@ public class Drawing extends JPanel {
 
     public void print(Graphics g) {
         super.print(g);
-//        create(g);
-        if(bool5) {
+        if (bool5) {
             for (int i = 0; i < 12; i++) {
-                checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
-                        checkers_b.get(i).getPosition_b().get(i).getPositionY());
-                checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
-                        checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                if (checkers_b.get(i).getPosition_b().get(i).isKing()) {
+                    checkers_b.get(i).setIcon(new ImageIcon(new Img().img4(2)));
+                    checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                            checkers_b.get(i).getPosition_b().get(i).getPositionY());
+                    checkers_b.get(i).setIcon(new ImageIcon(new Img().img2(2)));
+                } else {
+                    checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                            checkers_b.get(i).getPosition_b().get(i).getPositionY());
+
+                }
+
+                if (checkers_w.get(i).getPosition_w().get(i).isKing()) {
+                    checkers_w.get(i).setIcon(new ImageIcon(new Img().img4(1)));
+                    checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                            checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                    checkers_w.get(i).setIcon(new ImageIcon(new Img().img2(1)));
+                } else {
+                    checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                            checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                }
+
             }
             for (Int_Checker anInt_rectangle : int_rectangle) {
                 rect.paintIcon(this, g, anInt_rectangle.getPositionX(), anInt_rectangle.getPositionY());
             }
-        }else {
+        } else {
             for (int i = 0; i < 12; i++) {
-                checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
-                        checkers_b.get(i).getPosition_b().get(i).getPositionY());
-                checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
-                        checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                if (checkers_b.get(i).getPosition_b().get(i).isKing()) {
+                    checkers_b.get(i).setIcon(new ImageIcon(new Img().img4(2)));
+                    checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                            checkers_b.get(i).getPosition_b().get(i).getPositionY());
+                    checkers_b.get(i).setIcon(new ImageIcon(new Img().img2(2)));
+                } else {
+                    checkers_b.get(i).getIcon().paintIcon(this, g, checkers_b.get(i).getPosition_b().get(i).getPositionX(),
+                            checkers_b.get(i).getPosition_b().get(i).getPositionY());
+                }
+
+                if (checkers_w.get(i).getPosition_w().get(i).isKing()) {
+                    checkers_w.get(i).setIcon(new ImageIcon(new Img().img4(1)));
+                    checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                            checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                    checkers_w.get(i).setIcon(new ImageIcon(new Img().img2(1)));
+                } else {
+                    checkers_w.get(i).getIcon().paintIcon(this, g, checkers_w.get(i).getPosition_w().get(i).getPositionX(),
+                            checkers_w.get(i).getPosition_w().get(i).getPositionY());
+                }
             }
         }
     }

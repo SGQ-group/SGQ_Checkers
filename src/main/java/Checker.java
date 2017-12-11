@@ -15,6 +15,10 @@ public class Checker {
         return icon;
     }
 
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
+
     public ArrayList<Int_Checker> getPosition_b() {
         return position_b;
     }
