@@ -10,9 +10,13 @@ public class Game implements Runnable, MouseListener {
     private boolean bool2 = false; //Для проверки нажатия на белую шашку
     private boolean bool3 = false; //Для проверки нажатия на пустую клетку для чёрных
     private boolean bool4 = false; //Для проверки нажатия на чёрную шашку
+    private boolean bool16 = false; //Для шагов на следующую клетку направо
     private boolean bool6 = false; //Для шагов на следующую клетку направо
+    private boolean bool17 = false; //Для шагов на следующую клетку направо наверх
     private boolean bool7 = false; //Для шагов на следующую клетку направо наверх
+    private boolean bool18 = false; //Для шагов на следующую клетку налево
     private boolean bool8 = false; //Для шагов на следующую клетку налево
+    private boolean bool19 = false; //Для шагов на следующую клетку налево наверх
     private boolean bool9 = false; //Для шагов на следующую клетку налево наверх
     private boolean bool10 = false; //Для шагов на следующую клетку налево наверх
     private boolean bool11 = false; //Для шагов на следующую клетку налево наверх
@@ -174,6 +178,36 @@ public class Game implements Runnable, MouseListener {
                             }
                     }
 //                }
+                    if (((Drawing) panel).getCheckers_w().get(i).getPosition_w().get(i).isKing()){
+                        if (method_test(positionX + 99, positionY + 99, 0)) {      //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                            if (method_test4(positionX + 99, positionY + 99)) { //Проверяем занята ли клетка справа???
+                                int_rectangle.add(new Int_Checker(positionX + 99, positionY + 99)); //Рисуем квадратик
+//                        bool10 = false;
+                                bool16 = true;
+                            }
+
+                        } else if (method_test(positionX + 99, positionY + 99, true)) { //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                            if (method_test2(positionX + 198, positionY + 198))                //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит
+                                if (method_test4(positionX + 198, positionY + 198)) {          //Проверяем стоит ли шашка на клетке справа сверху. Идём дальше если не стоит???
+                                    int_rectangle.add(new Int_Checker(positionX + 198, positionY + 198)); //Рисуем квадратик
+                                    bool17 = true;
+                                }
+                        }
+                        if (method_test(positionX - 99, positionY + 99, 1)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
+                            if (method_test3(positionX - 99, positionY + 99)) {     //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит???
+                                int_rectangle.add(new Int_Checker(positionX - 99, positionY + 99)); //Рисуем квадратик
+//                        bool11 = false;
+                                bool18 = true;
+                            }
+
+                        } else if (method_test(positionX - 99, positionY + 99, true)) {  //Проверяем стоит ли шашка на клетке слева. Идём дальше если не стоит
+                            if (method_test2(positionX - 198, positionY + 198))                 //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит
+                                if (method_test3(positionX - 198, positionY + 198)) {           //Проверяем стоит ли шашка на клетке слева сверху. Идём дальше если не стоит???
+                                    int_rectangle.add(new Int_Checker(positionX - 198, positionY + 198)); //Рисуем квадратик
+                                    bool19 = true;
+                                }
+                        }
+                    }
                     ((Drawing) panel).setInt_rectangle(int_rectangle);
                     ((Drawing) panel).setBool5(true);
                     panel.print(panel.getGraphics());
@@ -223,6 +257,37 @@ public class Game implements Runnable, MouseListener {
                             }
                     }
 //                }
+                    if (((Drawing) panel).getCheckers_b().get(i).getPosition_b().get(i).isKing()){
+                        if (method_test(positionX + 99, positionY - 99, 0)) {  //Проверяем стоит ли шашка на клетке справа. Идём дальше если не стоит
+                            if (method_test4(positionX + 99, positionY - 99)) {  //Проверяем занята ли клетка справа
+                                int_rectangle.add(new Int_Checker(positionX + 99, positionY - 99)); //Рисуем квадратик
+//                        bool10 = false;
+                                bool16 = true;
+                            }
+                        } else if (method_test(positionX + 99, positionY - 99, false)) { //Проверем стоит ли шашка на клетке справа. Если стоит, то идём дальше
+                            if (method_test2(positionX + 198, positionY - 198))               //Проверяем занята ли клетка справа через одну
+                                if (method_test4(positionX + 198, positionY - 198)) {         //Проверяем свободна ли клетка справа через одну???
+                                    int_rectangle.add(new Int_Checker(positionX + 198, positionY - 198)); //Рисуем квадратик
+//                            bool10 = false;
+                                    bool17 = true;
+                                }
+                        }
+
+                        if (method_test(positionX - 99, positionY - 99, 1)) {          //Проверяем стоит ли шашка на клетке слева. Идём дальше, если не стоит
+                            if (method_test3(positionX - 99, positionY - 99)) {     //Проверяем занята ли клетка слева???
+                                int_rectangle.add(new Int_Checker(positionX - 99, positionY - 99)); //Рисуем квадратик
+//                        bool11 = false;
+                                bool18 = true;
+                            }
+                        } else if (method_test(positionX - 99, positionY - 99, false)) { //Проверяем стоит ли шашка на клетке слева. Если нет, то идём дальше
+                            if (method_test2(positionX - 198, positionY - 198))               //Проверяем стоит ли шашка на клетке слева через одну. Если нет, то идём дальше
+                                if (method_test3(positionX - 198, positionY - 198)) {         //Проверяем занята ли клетка сверху слева???
+                                    int_rectangle.add(new Int_Checker(positionX - 198, positionY - 198)); //Рисуем квадратик
+//                            bool10 = false;
+                                    bool19 = true;
+                                }
+                        }
+                    }
                     ((Drawing) panel).setInt_rectangle(int_rectangle);
                     ((Drawing) panel).setBool5(true);
                     panel.print(panel.getGraphics());
@@ -239,15 +304,25 @@ public class Game implements Runnable, MouseListener {
         if (bool2) {  //Проверяем клик на белую шашку
             if (bool1) { //Проверяем клик на пустую клетку для белых
                 if (bool6)
-                    steps(positionX - 99, positionY + 99, true, 99, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                    steps(positionX - 99, positionY + 99, true, 99, true, false); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
                 if (bool8)
-                    steps(positionX + 99, positionY + 99, true, 99, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
+                    steps(positionX + 99, positionY + 99, true, 99, false, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
                 if (bool7)
-                    steps(positionX - 198, positionY + 198, true, 198, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                    steps(positionX - 198, positionY + 198, true, 198, true, false); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
                 if (bool9)
-                    steps(positionX + 198, positionY + 198, true, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
+                    steps(positionX + 198, positionY + 198, true, 198, false, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
 
+                if (((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).isKing()){
+                    if (bool16)
+                        steps(positionX - 99, positionY - 99, true, 99, true, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
+                    if (bool18)
+                        steps(positionX + 99, positionY - 99, true, 99, false, true); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
+                    if (bool17)
+                        steps(positionX - 198, positionY - 198, true, 198, true, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
+                    if (bool19)
+                        steps(positionX + 198, positionY - 198, true, 198, false, true); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
 
+                }
 //                if (bool6) {
 //                    steps(positionX + 99, positionX - 99, positionY + 99, true, 99);
 //                } else if (bool7) {
@@ -258,13 +333,27 @@ public class Game implements Runnable, MouseListener {
         if (bool4) {  //Проверяем клик на чёрную шашку
             if (bool3) { //Проверяем клик на пустую клетку для чёрных
                 if (bool6)
-                    steps(positionX - 99, positionY - 99, false, 99, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
+                    steps(positionX - 99, positionY - 99, false, 99, true, false); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для чёрных
                 if (bool8)
-                    steps(positionX + 99, positionY - 99, false, 99, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
+                    steps(positionX + 99, positionY - 99, false, 99, false, false); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для чёрных
                 if (bool7)
-                    steps(positionX - 198, positionY - 198, false, 198, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
+                    steps(positionX - 198, positionY - 198, false, 198, true, false); //Если bool8 = true, то мы передаём в метод Steps ход направо на 2 клетки для чёрных
                 if (bool9)
-                    steps(positionX + 198, positionY - 198, false, 198, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
+                    steps(positionX + 198, positionY - 198, false, 198, false, false); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для чёрных
+
+                if (((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).isKing()){
+                    if (bool16)
+                        steps(positionX - 99, positionY + 99, false, 99, true, true); //Если bool6 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                    if (bool18)
+                        steps(positionX + 99, positionY + 99, false, 99, false, true); //Если bool7 = true, то мы передаём в метод Steps ход налево на 1 клетку для белых
+                    if (bool17)
+                        steps(positionX - 198, positionY + 198, false, 198, true, true); //Если bool8 = true, то мы передаём в метод Steps ход направо на 1 клетку для белых
+                    if (bool19)
+                        steps(positionX + 198, positionY + 198, false, 198, false, true); //Если bool9 = true, то мы передаём в метод Steps ход налево на 2 клетки для белых
+
+                }
+
+
 //                if (bool6) {
 //                    steps(positionX + 99, positionX - 99, positionY - 99, false, 99);
 //                } else if (bool7) {
@@ -371,15 +460,21 @@ public class Game implements Runnable, MouseListener {
         return false;
     }
 
-    private void steps(int positionX_1, int positionY, boolean bol, int inta, boolean bool) {
+    private void steps(int positionX_1, int positionY, boolean bol, int inta, boolean bool, boolean test) {
         if (bol) {
             int checkerX = ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionX();
             int checkerY = ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).getPositionY();
             if (bool) {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
+                    if (!test){
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
                         ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                    } else {
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 + inta);
+                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY + inta);
+                    }
+
                         if (bool10) {
                             ((Drawing) panel).getCheckers_b().get(index2).getPosition_b().get(index2).setPositionX(2000);
                             ((Drawing) panel).getCheckers_b().get(index2).getPosition_b().get(index2).setPositionY(2000);
@@ -395,9 +490,13 @@ public class Game implements Runnable, MouseListener {
                         bool3 = false;
                         bool4 = false;
                         bool6 = false;
+                        bool16 = false;
                         bool7 = false;
+                        bool17 = false;
                         bool8 = false;
+                        bool18 = false;
                         bool9 = false;
+                        bool19 = false;
                         bool10 = false;
                         bool11 = false;
                         boolGame = false;
@@ -405,8 +504,14 @@ public class Game implements Runnable, MouseListener {
             } else {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
-                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
-                        ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        if (!test){
+                            ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
+                            ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY - inta);
+                        } else {
+                            ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionX(positionX_1 - inta);
+                            ((Drawing) panel).getCheckers_w().get(index).getPosition_w().get(index).setPositionY(positionY + inta);
+                        }
+
                         if (bool11) {
                             ((Drawing) panel).getCheckers_b().get(index3).getPosition_b().get(index3).setPositionX(2000);
                             ((Drawing) panel).getCheckers_b().get(index3).getPosition_b().get(index3).setPositionY(2000);
@@ -422,9 +527,13 @@ public class Game implements Runnable, MouseListener {
                         bool3 = false;
                         bool4 = false;
                         bool6 = false;
+                        bool16 = false;
                         bool7 = false;
+                        bool17 = false;
                         bool8 = false;
+                        bool18 = false;
                         bool9 = false;
+                        bool19 = false;
                         bool10 = false;
                         bool11 = false;
                         boolGame = false;
@@ -436,8 +545,14 @@ public class Game implements Runnable, MouseListener {
             if (bool) {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
-                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
-                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        if (!test){
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        } else {
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 + inta);
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY - inta);
+                        }
+
                         if (bool10) {
                             ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionX(2000);
                             ((Drawing) panel).getCheckers_w().get(index2).getPosition_w().get(index2).setPositionY(2000);
@@ -455,9 +570,13 @@ public class Game implements Runnable, MouseListener {
                         bool3 = false;
                         bool4 = false;
                         bool6 = false;
+                        bool16 = false;
                         bool7 = false;
+                        bool17 = false;
                         bool8 = false;
+                        bool18 = false;
                         bool9 = false;
+                        bool19 = false;
                         bool10 = false;
                         bool11 = false;
                         boolGame = true;
@@ -465,8 +584,14 @@ public class Game implements Runnable, MouseListener {
             } else {
                 if (positionX_1 == checkerX)
                     if (positionY == checkerY) {
-                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
-                        ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        if (!test){
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY + inta);
+                        } else {
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionX(positionX_1 - inta);
+                            ((Drawing) panel).getCheckers_b().get(index).getPosition_b().get(index).setPositionY(positionY - inta);
+                        }
+
                         if (bool11) {
                             ((Drawing) panel).getCheckers_w().get(index3).getPosition_w().get(index3).setPositionX(2000);
                             ((Drawing) panel).getCheckers_w().get(index3).getPosition_w().get(index3).setPositionY(2000);
@@ -482,9 +607,13 @@ public class Game implements Runnable, MouseListener {
                         bool3 = false;
                         bool4 = false;
                         bool6 = false;
+                        bool16 = false;
                         bool7 = false;
+                        bool17 = false;
                         bool8 = false;
+                        bool18 = false;
                         bool9 = false;
+                        bool19 = false;
                         bool10 = false;
                         bool11 = false;
                         boolGame = true;
