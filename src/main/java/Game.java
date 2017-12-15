@@ -29,7 +29,7 @@ public class Game implements Runnable, MouseListener {
 
     public void run() {   //Этот класс короче зачем-то нужен, я уже забыл. Просто не трогай его
         JFrame frame = new JFrame();
-        frame.setTitle("Test mouse events");
+        frame.setTitle("SGQ_Checkers");
         // при закрытии окна выйти
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
