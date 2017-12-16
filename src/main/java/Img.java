@@ -6,10 +6,10 @@ public class Img {
 
     //Метод считывания из ресурс папки t.jpg (Доска)
     public BufferedImage img1() {
-        try {
-            return ImageIO.read(this.getClass().getResource("t.jpg"));
+        try {//Для безопасности
+            return ImageIO.read(this.getClass().getResource("t.jpg")); //Достаем картинку с ресурс папки
         } catch (IOException e) {
-            return null;
+            return null; //В случае ошибки, возвращаем null
         }
     }
 
@@ -18,16 +18,16 @@ public class Img {
         //Выбор изображения шашки
         switch (a) {
             case 1: //Белая шашка
-                try {
-                    return ImageIO.read(this.getClass().getResource("w.png"));
+                try {//Для безопасности
+                    return ImageIO.read(this.getClass().getResource("w.png"));//Достаем картинку с ресурс папки
                 } catch (IOException e) {
-                    return null;
+                    return null;//В случае ошибки, возвращаем null
                 }
             case 2: //Черная шашка
-                try {
-                    return ImageIO.read(this.getClass().getResource("b.png"));
+                try {//Для безопасности
+                    return ImageIO.read(this.getClass().getResource("b.png"));//Достаем картинку с ресурс папки
                 } catch (IOException e) {
-                    return null;
+                    return null;//В случае ошибки, возвращаем null
                 }
             default:
                 return null;
@@ -36,9 +36,9 @@ public class Img {
 
     public BufferedImage img3() {
         try {
-            return ImageIO.read(this.getClass().getResource("r.png"));
+            return ImageIO.read(this.getClass().getResource("r.png"));//Достаем картинку с ресурс папки
         } catch (IOException e) {
-            return null;
+            return null;//В случае ошибки, возвращаем null
         }
     }
 
@@ -46,16 +46,16 @@ public class Img {
         //Выбор изображения шашки
         switch (a) {
             case 1: //Белая дамка
-                try {
-                    return ImageIO.read(this.getClass().getResource("wd.png"));
+                try { //Для безопасности
+                    return ImageIO.read(this.getClass().getResource("wd.png"));//Достаем картинку с ресурс папки
                 } catch (IOException e) {
-                    return null;
+                    return null;//В случае ошибки, возвращаем null
                 }
             case 2: //Черная дамка
-                try {
-                    return ImageIO.read(this.getClass().getResource("bd.png"));
+                try {//Для безопасности
+                    return ImageIO.read(this.getClass().getResource("bd.png"));//Достаем картинку с ресурс папки
                 } catch (IOException e) {
-                    return null;
+                    return null;//В случае ошибки, возвращаем null
                 }
             default:
                 return null;
